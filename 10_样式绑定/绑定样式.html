@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>初始模板</title>
+        <style>
+            .basic {
+                width: 200px;
+                height: 80px;
+                border: 2px solid black;
+            }
+
+            .happy {
+                background-color: pink;
+            }
+            .sad {
+                background-color: #ccc;
+            }
+            .normal {
+                background-color: skyblue;
+            }
+            .at1 {
+                font-size: 20px;
+            }
+            .at2 {
+                text-shadow: #fc0 1px 0 10px;
+            }
+            .at3 {
+                border-radius: 20px;
+            }
+        </style>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <!-- 绑定class样式--字符串写法,适用于: 样式的类名不确定,需要动态指定 -->
+            <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+            <br />
+            <br />
+            <br />
+
+            <!-- 绑定class样式--数组串写法,适用于: 样式的个数不确定,名字也不确定 -->
+            <div class="basic" :class="classArr">{{name}}</div>
+
+            <br />
+            <br />
+            <br />
+
+            <!-- 绑定class样式--对象写法,适用于: 样式的个数确定,名字也确定,但要动态决定用不用 -->
+            <div class="basic" :class="classObj">{{name}}</div>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false;
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+                mood: 'normal',
+                classArr: ['at1', 'at2', 'at3'],
+                classObj: {
+                    at1: false,
+                    at2: false,
+                },
+            },
+            methods: {
+                changeMood() {
+                    const arr = ['normal', 'happy', 'sad'];
+                    let num = Math.floor(Math.random() * (2 + 1));
+                    this.mood = arr[num];
+                },
+            },
+        });
+    </script>
+</html>
