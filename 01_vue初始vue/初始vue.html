@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>初始vue</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 
+            初始Vue:
+                1. 想让Vue工作, 就必须建立一个Vue实例,且要传入一个配置对象;
+                2. root容器里的代码依然符合HTML规范, 只不过混入了一些特殊的Vue语法;
+                3. root容器里的代码称为[[Vue模板]];
+                4. Vue实例和容器是一一对应的;
+                5. 真实开发中只有一个Vue实例, 并且会配合组件一起使用;
+                6. {{xxx}}中的xxx要写js表达式, 且xxx可以自动读取到data中的所有属性;
+                7. 一旦data中的数据发生变化, 那么页面中用到该数据的地方也会自动更新;
+         -->
+        <div id="root">
+            <!-- {{是插值语法}} -->
+            <!-- {{内部写入js表达式}} -->
+            <h1>hello, {{name}}</h1>
+        </div>
+    </body>
+    <script>
+        // 阻止vue的小提示
+        Vue.config.productionTip = false;
+
+        // 创建Vue实例 传一个对象, 配置对象
+        new Vue({
+            // 用于找到容器, 让vue实例为这个容器服务, 值通常为class选择器字符串
+            el: '#root',
+            // data中用于存储数据, 数据供el中所指定的数据使用, 值暂时先写成一个对象
+            data: {
+                name: '尚硅谷',
+            },
+        });
+    </script>
+</html>

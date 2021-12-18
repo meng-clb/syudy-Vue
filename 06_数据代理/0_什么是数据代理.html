@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>什么是数据代理</title>
+    </head>
+    <body></body>
+    <script>
+        const x = {
+            name: 200,
+        };
+
+        const y = {
+            name: 100,
+        };
+        // 通过defineProperty为y添加代理,通过代理获取修改x的值
+        Object.defineProperty(y, 'x', {
+            get() {
+                return x.name;
+            },
+            set(value) {
+                x.name = value;
+            },
+        });
+    </script>
+</html>

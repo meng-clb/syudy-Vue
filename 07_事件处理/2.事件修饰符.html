@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>2.事件修饰符</title>
+        <script src="../js/vue.js"></script>
+        <style>
+            * {
+                margin-top: 20px;
+            }
+
+            .demo1 {
+                background-color: skyblue;
+                padding: 20px;
+            }
+
+            .box1 {
+                padding: 5px;
+                background-color: pink;
+            }
+
+            .box2 {
+                padding: 5px;
+                background-color: aquamarine;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 
+            Vue中的事件修饰符:
+                1. prevent: 阻止默认事件(常用);
+                2. stop: 阻止事件冒泡(常用)
+                3. once: 事件只触发一次(常用)
+                4. capture: 使用事件的捕获模式
+                5. self: 只有event.target时当前操作的元素才触发事件
+                6. passive: 事件的默认行为立即执行, 无需等待事件回调执行完毕
+         -->
+        <div id="root">
+            <h1>欢迎来到{{name}}学习</h1>
+            <!-- prevent: 阻止默认事件(常用); 阻止a链接的跳转 -->
+            <a href="http://www.baidu.com" @click.prevent="showInfo">点我提示信息</a>
+            <!-- stop: 阻止事件冒泡(常用) -->
+            <div class="demo1" @click="showInfo">
+                <button @click.stop="showInfo">点击</button>
+                <!-- 事件处理也可以连续打点调用 -->
+                <a href="http://www.baidu.com" @click.stop.prevent="showInfo">点击</a>
+            </div>
+
+            <!-- once: 事件只触发一次(常用) -->
+            <button @click.once="showInfo">点击</button>
+
+            <!-- capture: 使用事件的捕获模式 -->
+            <div class="box1" @click.capture="showMsg(1)">
+                box1
+                <div class="box2" @click="showMsg(2)">box2</div>
+            </div>
+
+            <!-- self: 只有event.target时当前操作的元素才触发事件 -->
+            <div class="demo1" @click.self="showInfo">
+                <button @click="showInfo">点击</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        Vue.config.productionTip = false;
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+            },
+            methods: {
+                showInfo(e) {
+                    alert('同学你好');
+                },
+                showMsg(msg) {
+                    console.log(msg);
+                },
+            },
+        });
+    </script>
+</html>
