@@ -34,6 +34,16 @@
         <script src="../js/vue.js"></script>
     </head>
     <body>
+        <!-- 
+            绑定样式: 
+                1.class样式
+                    写法: :class="xxx"" xxx可以是字符串,对象,数组.
+                         字符串写法,适用于: 样式的类名不确定,需要动态指定 
+                         数组串写法,适用于: 要绑定多个样式,个数不确定,名字也不确定
+                         对象写法,适用于: 要绑定多个样式,个数确定,名字也确定,但要动态决定用不用
+                2.style样式
+                    写法: :style="xxx" xxx可以是字符串,对象,数组.
+         -->
         <div id="root">
             <!-- 绑定class样式--字符串写法,适用于: 样式的类名不确定,需要动态指定 -->
             <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
@@ -50,6 +60,9 @@
 
             <!-- 绑定class样式--对象写法,适用于: 样式的个数确定,名字也确定,但要动态决定用不用 -->
             <div class="basic" :class="classObj">{{name}}</div>
+
+            <!-- 绑定style样式--对象写法 -->
+            <div class="basic" :style="styleObj">{{name}}</div>
         </div>
     </body>
 
@@ -65,6 +78,10 @@
                 classObj: {
                     at1: false,
                     at2: false,
+                },
+                styleObj: {
+                    fontSize: '40px',
+                    backgroundColor: 'skyblue',
                 },
             },
             methods: {
