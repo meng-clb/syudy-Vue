@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>初始模板</title>
+        <!-- 仅用于存在文件夹下的模板 -->
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 
+            条件渲染:
+                1. v-if
+                    写法:
+                        (1). v-if="表达式"
+                        (2). v-else-if="表达式"
+                        (3). v-else="表达式"
+                    适用于: 切换频率较低的场景
+                    特点: 不展示的DOM元素直接被移除
+                    注意: v-if可以和v-else-if,v-else一起使用,但要求结构不可被""打断""
+                2. v-show
+                    写法: v-show="表达式"
+                    适用于: 切换频率较高的场景
+                    特点: 不展示的DOM元素未被移除,仅仅是使用样式隐藏, (display=none)
+                
+                3. 注意: 
+                    使用v-if时,元素可能无法获取到, 而使用v-show一定可以获取到   
+         -->
+        <div id="root">
+            <!-- 使用 v-show 做条件渲染 -->
+            <!-- <h2 v-show="true">欢迎来到{{name}}</h2> -->
+            <!-- <h2 v-show="1 === 1">欢迎来到{{name}}</h2> -->
+            <!-- <h2 v-show="a">欢迎来到{{name}}</h2> -->
+
+            <!-- 使用 v-if 做条件渲染 -->
+            <!-- <h2 v-if="false">欢迎来到{{name}}</h2> -->
+            <!-- <h2 v-if="1 === 1">欢迎来到{{name}}</h2> -->
+            <h2>a的值是: {{a}}</h2>
+            <button @click="a++">a+1</button>
+            <!-- <div v-show="a==1">一</div>
+            <div v-show="a==2">二</div>
+            <div v-show="a==3">三</div> -->
+
+            <!-- if- else 中间不可被打断 -->
+            <!-- <div v-if="a==1">一</div>
+            <div v-else-if="a==2">二</div>
+            <div v-else-if="a==3">三</div>
+            <div v-else>其他</div> -->
+
+            <!-- template模板包含的内容在html中显示,但是不会显示template模板,template只能配合v-if使用, template不会破坏html结构,  -->
+            <template v-if="a===1">
+                <h2>尚硅谷</h2>
+                <h2>北京</h2>
+                <h2>百度</h2>
+            </template>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false;
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+                a: 0,
+            },
+        });
+    </script>
+</html>
